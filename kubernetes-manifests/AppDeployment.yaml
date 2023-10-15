@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testchessanalyzer
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: testchessanalyzer
+  template:
+    metadata:
+      labels:
+        app: testchessanalyzer
+    spec:
+      containers:
+      - name: testchessanalyzer
+        image: mikhailpastushenko/testchessanalyzer:v1.0
+        ports:
+        - containerPort: 80
