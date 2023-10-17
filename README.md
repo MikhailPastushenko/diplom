@@ -137,7 +137,7 @@ terraform apply
 
 ![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/484679da-19ac-4478-97ee-1d6e3f79e05f)
 
-Устанавливаем ingress controller  ingress-nginx
+Для доступа к приложению извне кластера устанавливаем ingress controller  ingress-nginx
 
 ![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/9fc5558c-4c1a-4577-af08-b94410e0ddda)
 
@@ -147,7 +147,7 @@ terraform apply
 
 ![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/5a0ea1d4-9e8f-41b3-8926-2f5802a544d5)
 
-К сожалению, не удалось добиться работы ингресса - не приваивается адрес и приложение недостуно извне.  Если это обязательное условие, то пршу помочь с выполнением   
+К сожалению, не удалось добиться работы ингресса - не присваивается адрес и приложение недоступно извне.  Если это обязательное условие, то прошу помочь с выполнением   
 
 ![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/8173bf65-2779-4b01-b8cb-0bf935c23a8b)
 
