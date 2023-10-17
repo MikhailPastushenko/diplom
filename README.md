@@ -64,6 +64,7 @@ terraform init -backend-config="access_key=$TF_VAR_ACCESS_KEY" -backend-config="
 
 ![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/1c4e7d1c-f188-4b9c-9c03-7c77e8b35ed0)
 
+Ссылка на репозиторий с файлами terraform https://github.com/MikhailPastushenko/diplom-terraform
 
 ### Создание Kubernetes кластера
 
