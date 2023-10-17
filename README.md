@@ -1,1 +1,154 @@
-# diplom
+# Дипломный практикум в Yandex.Cloud
+
+### Создание облачной инфраструктуры
+
+1. Создаём сервисный аккаунт, который будет в дальнейшем использоваться Terraform для работы с инфраструктурой
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/af3eb4a1-c6cc-4fa0-be2d-74131a747650)
+
+Настраиваем согласно инструкции:
+https://cloud.yandex.ru/docs/tutorials/infrastructure-management/terraform-quickstart
+
+Устанавливаем и настраиваем профиль yc. И создаём новый профиль sa-netology для сервисного аккаунта netology-account
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/f55641f6-705e-47b9-98f4-e5b8ac73f491)
+
+Создаём авторизованный ключ. Назначаем его профилю sa-netology 
+
+yc config set service-account-key key.json
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/2506fcb0-f245-47a4-b057-179577c502ce)
+
+Задаём переменные и описываем их в файле variables.tf
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/59f299f9-34b1-43e4-b5e0-93571fcf617b)
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/bf17d345-4806-4deb-bf5b-d1677ed94941)
+
+2. Подготавливаем бэкенд для Terraform, используя рекомендуемый вариант
+
+Создаём бакет в консоли
+   
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/616590cf-7c44-4d51-875c-579bac661c20)
+
+Добавляем описание бэкенда 
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/eb412ee9-92f1-4d7b-9aff-d53960575ee3)
+
+Создаём статический ключ для доступа в бакет через консоль  и добавляем переменные
+export ACCESS_KEY="<идентификатор_ключа>"
+export SECRET_KEY="<секретный_ключ>"
+
+Заодно добавляем все переменные перманентно
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/a2ba733b-3cc6-416d-8b29-413b042a6d2d)
+
+Переинициализируем terraform
+
+terraform init -backend-config="access_key=$TF_VAR_ACCESS_KEY" -backend-config="secret_key=$TF_VAR_SECRET_KEY"
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/b3a33b2c-bd74-4c7a-a648-d028d930003f)
+
+3. Создаём VPC с подсетями в разных зонах доступности.
+   
+Добавляем указанные ресурсы в файл main.tf 
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/b865f52b-d41d-4205-af91-64a75d3cde51)
+
+4. Проверяем выполнение команд terraform destroy и terraform apply
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/59f519d8-6ccc-4227-b49d-a8109206b556)
+
+   
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/09ddedaa-09c0-4973-9ac2-9e7e50c57d9d)
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/1c4e7d1c-f188-4b9c-9c03-7c77e8b35ed0)
+
+
+### Создание Kubernetes кластера
+
+Использую рекомендуемый вариант: самостоятельная установка Kubernetes кластера.
+
+Добавляем ресурсы  в main.tf  (Одна ВМ master и 2 ВМ worker)
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/1b2f4b8f-7a16-407e-91c1-b3b20be3d300)
+
+
+terraform apply
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/c3f336f9-7d55-48c8-8dfd-717728b53507)
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/5ae21244-63db-46a5-ae4f-4c0c29dc361a)
+
+Разворачиваем на этих ВМ кластер kubernetes с помощью kubespray
+
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/d7533af1-f838-49c0-a013-f8ef529112c4)
+
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/263b7d35-7414-4f10-8393-2df699b936d6)
+
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/caea7608-1c57-4f91-ada1-72d581961a57)
+
+`ansible-playbook -i inventory/mycluster/hosts.yaml cluster.yml -b -K -v`
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/46cfc3d8-8091-470e-b8ff-854d15663023)
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/097493fc-a6f5-4b6d-8b01-c6b455681c9e)
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/8b875ec7-638e-40c1-8a61-99285f5c9d19)
+
+
+### Создание тестового приложения
+
+Сделал заготовку для сайта 
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/7a888727-a119-49c3-9a75-7791dd1f0c44)
+
+код выложен в репозиторий https://github.com/MikhailPastushenko/diplom-app
+
+Готовим dokerfile
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/5e802b89-88a9-4d0a-99f8-ad647a68a892)
+
+создаём образ
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/edbac19b-b7e9-4639-913e-ca1cf901e990)
+
+авторизуемся в DockerHub
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/eccabdd5-3df3-4235-81f5-f4da42575d21)
+
+Создаём репозиторий под этот проект
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/5c93cc9a-4bfb-401e-86fe-585e0fde0a95)
+
+Пушим образ в репозиторий
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/c9ec66aa-e46e-4ecd-810c-28376c687b33)
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/4cb1e1b1-05d6-423f-a900-2e9c7ecc8e48)
+
+Ссылка на репозиторий https://hub.docker.com/r/mikhailpastushenko/testchessanalyzer/tags
+
+готовим на мастере манифест деплоймента и применяем
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/a1d2a98c-f82b-42ea-bea8-5f1141618a0c)
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/484679da-19ac-4478-97ee-1d6e3f79e05f)
+
+Устанавливаем ingress controller  ingress-nginx
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/9fc5558c-4c1a-4577-af08-b94410e0ddda)
+
+Создаём объекты service и ingress
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/cb04eb63-5857-4cc1-8a85-5df4c3af9137)
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/5a0ea1d4-9e8f-41b3-8926-2f5802a544d5)
+
+К сожалению, не удалось добиться работы ингресса - не приваивается адрес и приложение недостуно извне.  Если это обязательное условие, то пршу помочь с выполнением   
+
+![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/8173bf65-2779-4b01-b8cb-0bf935c23a8b)
+
+
+### Подготовка cистемы мониторинга и деплой приложения ###
