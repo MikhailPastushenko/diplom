@@ -153,3 +153,24 @@ terraform apply
 
 
 ### Подготовка cистемы мониторинга и деплой приложения ###
+
+Скачиваем и запускаем kube-prometheus
+
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/ad45c5f5-4e32-4ea5-9d3b-b0ab47978ada)
+
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/51b105c3-2c62-47f8-a335-eb9bbe8909c2)
+
+устанавливаем qbec
+
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/bf67f4c9-43e8-4a5a-a43c-5b5760ed631f)
+
+*(sudo mv qbec /usr/local/bin/)
+
+Создаём приложение qbec
+
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/b6b2af74-c067-46c2-8200-91a37ba6b79c)
+
+
+
+
+
