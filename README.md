@@ -170,6 +170,17 @@ terraform apply
 
 ![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/b6b2af74-c067-46c2-8200-91a37ba6b79c)
 
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/5d24e9e8-29f7-4ca5-ac12-4f5cd5407853)
+
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/c07055f1-d850-460c-bdab-3c7d0420e175)
+
+
+Файлы находятся <ссылка на репозиторий>
+
+Применяем конфигурацию
+
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/a5f163b2-f424-482d-8118-efea26aa251b)
+
 
 
 
