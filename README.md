@@ -175,7 +175,7 @@ terraform apply
 ![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/c07055f1-d850-460c-bdab-3c7d0420e175)
 
 
-Файлы находятся <ссылка на репозиторий>
+Файлы находятся https://github.com/MikhailPastushenko/diplom/tree/main/qbec
 
 Применяем конфигурацию
 
