@@ -1,6 +1,6 @@
 # Дипломный практикум в Yandex.Cloud
 
-### Создание облачной инфраструктуры
+## Создание облачной инфраструктуры ##
 
 1. Создаём сервисный аккаунт, который будет в дальнейшем использоваться Terraform для работы с инфраструктурой
 
@@ -66,7 +66,7 @@ terraform init -backend-config="access_key=$TF_VAR_ACCESS_KEY" -backend-config="
 
 Ссылка на репозиторий с файлами terraform https://github.com/MikhailPastushenko/diplom-terraform
 
-### Создание Kubernetes кластера
+## Создание Kubernetes кластера ##
 
 Использую рекомендуемый вариант: самостоятельная установка Kubernetes кластера.
 
@@ -101,7 +101,7 @@ terraform apply
 ![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/8b875ec7-638e-40c1-8a61-99285f5c9d19)
 
 
-### Создание тестового приложения
+## Создание тестового приложения ##
 
 Сделал заготовку для сайта 
 
@@ -152,7 +152,7 @@ terraform apply
 ![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/8173bf65-2779-4b01-b8cb-0bf935c23a8b)
 
 
-### Подготовка cистемы мониторинга и деплой приложения ###
+## Подготовка cистемы мониторинга и деплой приложения ##
 
 Скачиваем и запускаем kube-prometheus
 
@@ -182,6 +182,13 @@ terraform apply
 ![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/a5f163b2-f424-482d-8118-efea26aa251b)
 
 
+## Установка и настройка CI/CD ##
 
+Так как код лежит в GitHub, выбрал вариант с GitHub Actions
 
+Создаём необходимые секреты в репозитории
+
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/9fb0ab3c-3d63-44fb-8337-40f80081bbef)
+
+Создаём Workflow  https://github.com/MikhailPastushenko/diplom-app/blob/main/.github/workflows/main.yml
 
