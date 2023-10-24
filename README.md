@@ -192,3 +192,13 @@ terraform apply
 
 Создаём Workflow  https://github.com/MikhailPastushenko/diplom-app/blob/main/.github/workflows/main.yml
 
+Делаем кооммит с тегом (1.2.6)
+
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/5f8c2cf6-4ee8-4f00-b752-26ee071e06ab)
+
+тэг добавился в репозиторий
+
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/3313698f-d8fb-4c00-9fde-9a1ca4c19dd7)
+
+
+
