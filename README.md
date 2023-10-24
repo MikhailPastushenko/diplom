@@ -192,13 +192,22 @@ terraform apply
 
 Создаём Workflow  https://github.com/MikhailPastushenko/diplom-app/blob/main/.github/workflows/main.yml
 
-Делаем кооммит с тегом (1.2.6)
+Делаем кооммит с тегом (v1.2.8)
 
-![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/5f8c2cf6-4ee8-4f00-b752-26ee071e06ab)
+https://github.com/MikhailPastushenko/diplom-app/actions/runs/6633088528/job/18020197687
 
-тэг добавился в репозиторий
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/4442240e-6eb3-47a6-92ee-d6404fc8e0bf)
 
-![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/3313698f-d8fb-4c00-9fde-9a1ca4c19dd7)
+
+тэг добавился в репозиторий Docker https://hub.docker.com/repository/docker/mikhailpastushenko/testchessanalyzer/general
+
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/e08d3217-40c4-4bb6-a3a3-4afb528215c7)
+
+и выполнилс деплой на сервере 
+
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/1698ab94-4f7c-4be5-87be-d997338caa03)
+
+
 
 
 
