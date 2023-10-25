@@ -114,6 +114,8 @@ terraform apply
 
 ![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/5e802b89-88a9-4d0a-99f8-ad647a68a892)
 
+https://github.com/MikhailPastushenko/diplom-app/blob/main/Dockerfile
+
 создаём образ
 
 ![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/edbac19b-b7e9-4639-913e-ca1cf901e990)
@@ -142,15 +144,6 @@ terraform apply
 
 ![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/9fc5558c-4c1a-4577-af08-b94410e0ddda)
 
-Создаём объекты service и ingress
-
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/cb04eb63-5857-4cc1-8a85-5df4c3af9137)
-
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/5a0ea1d4-9e8f-41b3-8926-2f5802a544d5)
-
-К сожалению, не удалось добиться работы ингресса - не присваивается адрес и приложение недоступно извне.  Если это обязательное условие, то прошу помочь с выполнением   
-
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/8173bf65-2779-4b01-b8cb-0bf935c23a8b)
 
 
 ## Подготовка cистемы мониторинга и деплой приложения ##
@@ -183,15 +176,25 @@ terraform apply
 ![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/a5f163b2-f424-482d-8118-efea26aa251b)
 
 
+К сожалению, не удалось добиться работы ингресса - почему-то не присваивается адрес (EXTERNAL-IP  ingress-nginx-controller).   
+
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/420f2869-9183-4f21-8a90-e6fa5fbd8340)
+
+ Пробовал развернуть приложения как через qbec, так и вручную. Все поды подняты, сервис работает, приложение внутри кластера доступно, но не через ингресс. 
+ Если это обязательное условие, то прошу помочь с выполнением.
+
+
 ## Установка и настройка CI/CD ##
 
 Так как код лежит в GitHub, выбрал вариант с GitHub Actions
 
-Создаём необходимые секреты в репозитории
+Создаём в репозитории секреты, необходимые  для подключения
 
 ![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/9fb0ab3c-3d63-44fb-8337-40f80081bbef)
 
-Создаём Workflow  https://github.com/MikhailPastushenko/diplom-app/blob/main/.github/workflows/main.yml
+Создаём Workflow из двух экшенов: сборка образа и деплой
+
+https://github.com/MikhailPastushenko/diplom-app/blob/main/.github/workflows/main.yml
 
 Делаем кооммит с тегом (v1.2.8)
 
@@ -204,7 +207,7 @@ https://github.com/MikhailPastushenko/diplom-app/actions/runs/6633088528/job/180
 
 ![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/e08d3217-40c4-4bb6-a3a3-4afb528215c7)
 
-и выполнилс деплой на сервере 
+и выполнился деплой в кластере
 
 ![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/1698ab94-4f7c-4be5-87be-d997338caa03)
 
