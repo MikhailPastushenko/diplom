@@ -6,8 +6,6 @@
 
 ![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/af3eb4a1-c6cc-4fa0-be2d-74131a747650)
 
-Настраиваем согласно инструкции:
-https://cloud.yandex.ru/docs/tutorials/infrastructure-management/terraform-quickstart
 
 Устанавливаем и настраиваем профиль yc. И создаём новый профиль sa-netology для сервисного аккаунта netology-account
 
@@ -89,6 +87,7 @@ terraform apply
 
 ![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/263b7d35-7414-4f10-8393-2df699b936d6)
 
+готовим инвентаризационный файл и запускаем установку
 
 ![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/caea7608-1c57-4f91-ada1-72d581961a57)
 
@@ -99,6 +98,7 @@ terraform apply
 ![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/097493fc-a6f5-4b6d-8b01-c6b455681c9e)
 
 ![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/8b875ec7-638e-40c1-8a61-99285f5c9d19)
+
 
 
 ## Создание тестового приложения ##
