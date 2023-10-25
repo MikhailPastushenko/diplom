@@ -99,6 +99,7 @@ terraform apply
 
 ![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/8b875ec7-638e-40c1-8a61-99285f5c9d19)
 
+Изменённый файл инвентаризации: https://github.com/MikhailPastushenko/diplom/blob/main/kubespray/hosts.yaml
 
 
 ## Создание тестового приложения ##
