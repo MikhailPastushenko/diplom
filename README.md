@@ -4,34 +4,41 @@
 
 1. Создаём сервисный аккаунт, который будет в дальнейшем использоваться Terraform для работы с инфраструктурой
 
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/af3eb4a1-c6cc-4fa0-be2d-74131a747650)
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/ac76a1e9-11d0-49e8-9479-7a8e2fb95700)
 
 
 Устанавливаем и настраиваем профиль yc. И создаём новый профиль sa-netology для сервисного аккаунта netology-account
 
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/f55641f6-705e-47b9-98f4-e5b8ac73f491)
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/b99b7f0b-3564-4e76-97fd-20bc659cc9d1)
+
 
 Создаём авторизованный ключ. Назначаем его профилю sa-netology 
 
 yc config set service-account-key key.json
 
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/2506fcb0-f245-47a4-b057-179577c502ce)
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/9ec8a7cc-451e-4d72-9589-b236763d2d81)
+
 
 Задаём переменные и описываем их в файле variables.tf
 
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/59f299f9-34b1-43e4-b5e0-93571fcf617b)
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/e2545fab-ae54-4ae8-8d1b-52dc45e02caf)
 
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/bf17d345-4806-4deb-bf5b-d1677ed94941)
+
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/afdc506c-94c7-4367-8cc4-8d45340abf2f)
+
+
 
 2. Подготавливаем бэкенд для Terraform, используя рекомендуемый вариант
 
 Создаём бакет в консоли
-   
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/616590cf-7c44-4d51-875c-579bac661c20)
+
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/dd06d1d5-3e80-48d2-8c8b-56683edb0d8a)
+
 
 Добавляем описание бэкенда 
 
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/eb412ee9-92f1-4d7b-9aff-d53960575ee3)
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/55984bb7-f30b-4f6c-bf6e-6805aec2c97c)
+
 
 Создаём статический ключ для доступа в бакет через консоль  и добавляем переменные
 export ACCESS_KEY="<идентификатор_ключа>"
@@ -39,28 +46,32 @@ export SECRET_KEY="<секретный_ключ>"
 
 Заодно добавляем все переменные перманентно
 
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/a2ba733b-3cc6-416d-8b29-413b042a6d2d)
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/4a80ed4b-0d2e-4193-9d3e-e4c6d89efdba)
+
 
 Переинициализируем terraform
 
 terraform init -backend-config="access_key=$TF_VAR_ACCESS_KEY" -backend-config="secret_key=$TF_VAR_SECRET_KEY"
 
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/b3a33b2c-bd74-4c7a-a648-d028d930003f)
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/a6b740f4-ba77-491b-8fda-6fe4385d4dd5)
+
 
 3. Создаём VPC с подсетями в разных зонах доступности.
    
 Добавляем указанные ресурсы в файл main.tf 
 
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/b865f52b-d41d-4205-af91-64a75d3cde51)
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/aeb003a2-eca2-4587-8909-e123e0ccb976)
 
-4. Проверяем выполнение команд terraform destroy и terraform apply
+ Проверяем выполнение команд terraform destroy и terraform apply
 
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/59f519d8-6ccc-4227-b49d-a8109206b556)
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/ecaea408-ca72-4f45-8fd1-02d48e61fc0d)
 
-   
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/09ddedaa-09c0-4973-9ac2-9e7e50c57d9d)
 
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/1c4e7d1c-f188-4b9c-9c03-7c77e8b35ed0)
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/eea557f2-acf8-4207-9c1a-309c3a11f759)
+
+
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/71c35714-edad-4ee4-985c-d20d683ac89b)
+
 
 Ссылка на репозиторий с файлами terraform https://github.com/MikhailPastushenko/diplom-terraform
 
@@ -70,34 +81,42 @@ terraform init -backend-config="access_key=$TF_VAR_ACCESS_KEY" -backend-config="
 
 Добавляем ресурсы  в main.tf  (Одна ВМ master и 2 ВМ worker)
 
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/ab096afc-3366-4d34-8119-bbf1f9f43fda)
+
+
 ![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/1b2f4b8f-7a16-407e-91c1-b3b20be3d300)
 
 
 terraform apply
 
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/c3f336f9-7d55-48c8-8dfd-717728b53507)
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/44d15990-5bc3-4576-937f-bc48608f9d61)
 
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/5ae21244-63db-46a5-ae4f-4c0c29dc361a)
+
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/373c9a64-31c8-4805-be50-a067f3426b21)
+
 
 Разворачиваем на этих ВМ кластер kubernetes с помощью kubespray
 
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/1729c7c3-04e6-4834-9d86-e035bdad183a)
 
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/d7533af1-f838-49c0-a013-f8ef529112c4)
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/b6016bd2-e0da-4e96-99e9-7375a5cf847e)
 
-
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/263b7d35-7414-4f10-8393-2df699b936d6)
 
 готовим инвентаризационный файл и запускаем установку
 
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/caea7608-1c57-4f91-ada1-72d581961a57)
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/1c040e12-a603-4fd8-913e-5ccd5c4e72e6)
+
 
 `ansible-playbook -i inventory/mycluster/hosts.yaml cluster.yml -b -K -v`
 
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/46cfc3d8-8091-470e-b8ff-854d15663023)
 
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/097493fc-a6f5-4b6d-8b01-c6b455681c9e)
 
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/8b875ec7-638e-40c1-8a61-99285f5c9d19)
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/936528c7-7d72-49c3-967b-2598712a7440)
+
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/3e551fc3-ac51-463d-ab90-92b58acbd8f3)
+
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/3cc66f93-c063-4e4f-ad8a-73db637c7ee0)
+
 
 Изменённый файл инвентаризации: https://github.com/MikhailPastushenko/diplom/blob/main/kubespray/hosts.yaml
 
@@ -106,43 +125,42 @@ terraform apply
 
 Сделал заготовку для сайта 
 
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/7a888727-a119-49c3-9a75-7791dd1f0c44)
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/33f7a618-d983-44e4-af3b-d254fbd1cffa)
+
 
 код выложен в репозиторий https://github.com/MikhailPastushenko/diplom-app
 
 Готовим dokerfile
 
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/5e802b89-88a9-4d0a-99f8-ad647a68a892)
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/c9ff4b49-f759-4965-b098-f24d5444be7b)
+
 
 https://github.com/MikhailPastushenko/diplom-app/blob/main/Dockerfile
 
 создаём образ
 
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/edbac19b-b7e9-4639-913e-ca1cf901e990)
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/cacb8f8e-824a-44ce-9345-52126e865ca9)
+
 
 авторизуемся в DockerHub
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/eccabdd5-3df3-4235-81f5-f4da42575d21)
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/433c0502-eafa-4482-a61c-2fe5b8deaa96)
+
 
 Создаём репозиторий под этот проект
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/5c93cc9a-4bfb-401e-86fe-585e0fde0a95)
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/4b45bdd4-57fd-44ba-a659-697ecca0d698)
+
 
 Пушим образ в репозиторий
 
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/c9ec66aa-e46e-4ecd-810c-28376c687b33)
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/6c214d28-3cbf-4303-a51c-bd4760d75999)
 
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/4cb1e1b1-05d6-423f-a900-2e9c7ecc8e48)
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/c12dad15-28d7-4181-b082-8ace710d4f67)
 
 Ссылка на репозиторий https://hub.docker.com/r/mikhailpastushenko/testchessanalyzer/tags
 
-готовим на мастере манифест деплоймента и применяем
-
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/a1d2a98c-f82b-42ea-bea8-5f1141618a0c)
-
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/484679da-19ac-4478-97ee-1d6e3f79e05f)
-
 Для доступа к приложению извне кластера устанавливаем ingress controller  ingress-nginx
 
-![image](https://github.com/MikhailPastushenko/aboutDiplom/assets/99995304/9fc5558c-4c1a-4577-af08-b94410e0ddda)
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/e8837264-4e55-4c3a-9b16-bd2679752386)
 
 
 
