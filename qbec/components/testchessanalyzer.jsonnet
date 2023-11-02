@@ -64,6 +64,7 @@ local imageTag = std.extVar('image_tag');
     "namespace": env.namespace
   },
   "spec": {
+    "type": "LoadBalancer",
     "ports": [
       {
         "name": "web",
@@ -85,7 +86,7 @@ local imageTag = std.extVar('image_tag');
     "name": "http-ingress",
     "annotations": {
       "kubernetes.io/ingress.class": "nginx",
-      "nginx.ingress.kubernetes.io/rewrite-target": "/"
+      "ingress.alb.yc.io/external-ipv4-address": "51.250.36.198"
     }
   },
   "spec": {
@@ -98,7 +99,7 @@ local imageTag = std.extVar('image_tag');
               "pathType": "Prefix",
               "backend": {
                 "service": {
-                  "name": "testchessanalyzer",
+                  "name": params.name,
                   "port": {
                     "number": 9000
                   }
@@ -112,3 +113,4 @@ local imageTag = std.extVar('image_tag');
   }
 }
 ]
+
