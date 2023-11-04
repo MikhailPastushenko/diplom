@@ -1,4 +1,4 @@
-mikhail@yandex-cloud:~/diplom/terraform$ terraform plan
+mikhail@yandex-cloud:~/diplom/terraform$ terraform apply
 
 Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
   + create
@@ -11,7 +11,7 @@ Terraform will perform the following actions:
       + folder_id                 = (known after apply)
       + fqdn                      = (known after apply)
       + gpu_cluster_id            = (known after apply)
-      + hostname                  = "worker-0-stage"
+      + hostname                  = "master-0-stage"
       + id                        = (known after apply)
       + metadata                  = {
           + "serial-port-enable" = "1"
@@ -26,7 +26,7 @@ Terraform will perform the following actions:
                       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDB/fAX5Bq2wc5zoAHYSoLGLPyK7RsvR9xev1+tvxiKnWYHQHx0412+l1Cq2sbyGcuP5Vnsmhuu1hsxBU/zMrtFB+LES6RFdgh3imFA0YcmyUn+bKNh8gLQ7KNX/QuLvololE0Ihzn9csNpoH8kzQE4jJt8Ulq6mUD26lEj+ba5xbHWazYJzbxoddVmWvQ0Kot8Mo/V5vcWtFm1NvifaEeJnPzrRIrrNMQdf/1JkpwRv82KrWCvQc0qTvF90wAzxwjLe87L1I3RMl8ey6Z2nBKuCPUMseubDG0elBHK7fc/Cp78YTRcs2P948q3qeu4kCOODfRp455+GubMC0IrhKkBptl7FNc8f1AZM9KA78Gx4JFD0eHFNuOfeNuAjs3k6XiuxYP9vHQbOxRpefA1g+gmA16Uf/LCno3q95vORg3H+LWFstyJJ3Pz7vUXIqfY3DD4LIyRrB9K63yFunp6or/8WzeUZDg9OOjJ/s8qWDcE82Ypgw6Zwk/EEv1GYw+0CG8= mikhail@yandex-cloud
             EOT
         }
-      + name                      = "worker-0-stage"
+      + name                      = "master-0-stage"
       + network_acceleration_type = "standard"
       + platform_id               = "standard-v3"
       + service_account_id        = (known after apply)
@@ -255,3 +255,44 @@ Changes to Outputs:
       + (known after apply),
     ]
 
+Do you want to perform these actions in workspace "stage"?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+yandex_vpc_network.vpc-network: Creating...
+yandex_vpc_network.vpc-network: Creation complete after 4s [id=enpqlnil01t23ls3l6ge]
+yandex_vpc_subnet.private-subnet: Creating...
+yandex_vpc_subnet.public-subnet: Creating...
+yandex_vpc_subnet.public-subnet: Creation complete after 1s [id=b0cqb7d6v5ccd5tmi3b2]
+yandex_compute_instance.master[0]: Creating...
+yandex_compute_instance.worker[0]: Creating...
+yandex_compute_instance.worker[1]: Creating...
+yandex_vpc_subnet.private-subnet: Creation complete after 2s [id=b0caugo6gu1a3gm8k7gq]
+yandex_compute_instance.master[0]: Still creating... [10s elapsed]
+yandex_compute_instance.worker[0]: Still creating... [10s elapsed]
+yandex_compute_instance.worker[1]: Still creating... [10s elapsed]
+yandex_compute_instance.worker[1]: Still creating... [20s elapsed]
+yandex_compute_instance.worker[0]: Still creating... [20s elapsed]
+yandex_compute_instance.master[0]: Still creating... [20s elapsed]
+yandex_compute_instance.master[0]: Still creating... [30s elapsed]
+yandex_compute_instance.worker[1]: Still creating... [30s elapsed]
+yandex_compute_instance.worker[0]: Still creating... [30s elapsed]
+yandex_compute_instance.master[0]: Creation complete after 38s [id=ef3dqqlvmp2q74sct48g]
+yandex_compute_instance.worker[0]: Still creating... [40s elapsed]
+yandex_compute_instance.worker[1]: Still creating... [40s elapsed]
+yandex_compute_instance.worker[0]: Creation complete after 41s [id=ef3bic4kenrh6ic59rss]
+yandex_compute_instance.worker[1]: Creation complete after 42s [id=ef3lius19bbv340m4v1e]
+
+Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+master_ip_list = [
+  "192.168.30.10",
+]
+worker_ip_list = [
+  "192.168.30.34",
+  "192.168.30.20",
+]
