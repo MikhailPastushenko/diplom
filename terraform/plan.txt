@@ -1,78 +1,73 @@
 mikhail@yandex-cloud:~/diplom/terraform$ terraform plan
-yandex_compute_instance.worker1: Refreshing state... [id=ef3920fh907vibjdu7kg]
-yandex_vpc_network.vpc-network: Refreshing state... [id=enpjsls7q54kmuliq54p]
-yandex_compute_instance.worker2: Refreshing state... [id=ef3nbnr5hrguvb99tk86]
-yandex_vpc_subnet.private-subnet: Refreshing state... [id=b0cdpburltofc03pm2ra]
-yandex_vpc_subnet.public-subnet: Refreshing state... [id=b0c69n3sfcvbjecqumch]
-yandex_compute_instance.master[0]: Refreshing state... [id=ef3u08rtut3kers6bvn2]
 
 Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
   + create
-  - destroy
--/+ destroy and then create replacement
 
 Terraform will perform the following actions:
 
-  # yandex_compute_instance.master[0] must be replaced
-  # (moved from yandex_compute_instance.master)
--/+ resource "yandex_compute_instance" "master" {
-      ~ created_at                = "2023-10-08T17:52:13Z" -> (known after apply)
-      ~ folder_id                 = "b1gtb2cjv1rv6ckca0ud" -> (known after apply)
-      ~ fqdn                      = "master-stage.ru-central1.internal" -> (known after apply)
+  # yandex_compute_instance.master[0] will be created
+  + resource "yandex_compute_instance" "master" {
+      + created_at                = (known after apply)
+      + folder_id                 = (known after apply)
+      + fqdn                      = (known after apply)
       + gpu_cluster_id            = (known after apply)
-      ~ hostname                  = "master-stage" -> "worker-0-stage" # forces replacement
-      ~ id                        = "ef3u08rtut3kers6bvn2" -> (known after apply)
-      - labels                    = {} -> null
-      ~ name                      = "master-stage" -> "worker-0-stage"
+      + hostname                  = "worker-0-stage"
+      + id                        = (known after apply)
+      + metadata                  = {
+          + "serial-port-enable" = "1"
+          + "user-data"          = <<-EOT
+                #cloud-config
+                users:
+                  - name: mikhail
+                    groups: sudo
+                    shell: /bin/bash
+                    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+                    ssh-authorized-keys:
+                      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDB/fAX5Bq2wc5zoAHYSoLGLPyK7RsvR9xev1+tvxiKnWYHQHx0412+l1Cq2sbyGcuP5Vnsmhuu1hsxBU/zMrtFB+LES6RFdgh3imFA0YcmyUn+bKNh8gLQ7KNX/QuLvololE0Ihzn9csNpoH8kzQE4jJt8Ulq6mUD26lEj+ba5xbHWazYJzbxoddVmWvQ0Kot8Mo/V5vcWtFm1NvifaEeJnPzrRIrrNMQdf/1JkpwRv82KrWCvQc0qTvF90wAzxwjLe87L1I3RMl8ey6Z2nBKuCPUMseubDG0elBHK7fc/Cp78YTRcs2P948q3qeu4kCOODfRp455+GubMC0IrhKkBptl7FNc8f1AZM9KA78Gx4JFD0eHFNuOfeNuAjs3k6XiuxYP9vHQbOxRpefA1g+gmA16Uf/LCno3q95vORg3H+LWFstyJJ3Pz7vUXIqfY3DD4LIyRrB9K63yFunp6or/8WzeUZDg9OOjJ/s8qWDcE82Ypgw6Zwk/EEv1GYw+0CG8= mikhail@yandex-cloud
+            EOT
+        }
+      + name                      = "worker-0-stage"
+      + network_acceleration_type = "standard"
+      + platform_id               = "standard-v3"
       + service_account_id        = (known after apply)
-      ~ status                    = "running" -> (known after apply)
-        # (4 unchanged attributes hidden)
+      + status                    = (known after apply)
+      + zone                      = "ru-central1-c"
 
-      ~ boot_disk {
-          ~ device_name = "ef3qa4479kvcftioh2p7" -> (known after apply)
-          ~ disk_id     = "ef3qa4479kvcftioh2p7" -> (known after apply)
-          ~ mode        = "READ_WRITE" -> (known after apply)
-            # (1 unchanged attribute hidden)
+      + boot_disk {
+          + auto_delete = true
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = (known after apply)
 
-          ~ initialize_params {
-              ~ block_size  = 4096 -> (known after apply)
+          + initialize_params {
+              + block_size  = (known after apply)
               + description = (known after apply)
+              + image_id    = "fd80bm0rh4rkepi5ksdi"
               + name        = (known after apply)
+              + size        = 50
               + snapshot_id = (known after apply)
-                # (3 unchanged attributes hidden)
+              + type        = "network-hdd"
             }
         }
 
-      - metadata_options {
-          - aws_v1_http_endpoint = 1 -> null
-          - aws_v1_http_token    = 2 -> null
-          - gce_http_endpoint    = 1 -> null
-          - gce_http_token       = 1 -> null
-        }
-
-      ~ network_interface {
-          ~ index              = 0 -> (known after apply)
-          ~ ip_address         = "192.168.30.23" -> (known after apply)
-          ~ ipv6               = false -> (known after apply)
+      + network_interface {
+          + index              = (known after apply)
+          + ip_address         = (known after apply)
+          + ipv4               = true
+          + ipv6               = (known after apply)
           + ipv6_address       = (known after apply)
-          ~ mac_address        = "d0:0d:1e:02:37:df" -> (known after apply)
-          ~ nat_ip_address     = "51.250.38.217" -> (known after apply)
-          ~ nat_ip_version     = "IPV4" -> (known after apply)
-          ~ security_group_ids = [] -> (known after apply)
-            # (3 unchanged attributes hidden)
+          + mac_address        = (known after apply)
+          + nat                = true
+          + nat_ip_address     = (known after apply)
+          + nat_ip_version     = (known after apply)
+          + security_group_ids = (known after apply)
+          + subnet_id          = (known after apply)
         }
 
-      - placement_policy {
-          - host_affinity_rules = [] -> null
-        }
-
-      ~ resources {
-          - gpus          = 0 -> null
-            # (3 unchanged attributes hidden)
-        }
-
-      - scheduling_policy {
-          - preemptible = false -> null
+      + resources {
+          + core_fraction = 100
+          + cores         = 4
+          + memory        = 8
         }
     }
 
@@ -132,7 +127,7 @@ Terraform will perform the following actions:
           + nat_ip_address     = (known after apply)
           + nat_ip_version     = (known after apply)
           + security_group_ids = (known after apply)
-          + subnet_id          = "b0c69n3sfcvbjecqumch"
+          + subnet_id          = (known after apply)
         }
 
       + resources {
@@ -198,7 +193,7 @@ Terraform will perform the following actions:
           + nat_ip_address     = (known after apply)
           + nat_ip_version     = (known after apply)
           + security_group_ids = (known after apply)
-          + subnet_id          = "b0c69n3sfcvbjecqumch"
+          + subnet_id          = (known after apply)
         }
 
       + resources {
@@ -208,226 +203,55 @@ Terraform will perform the following actions:
         }
     }
 
-  # yandex_compute_instance.worker[2] will be created
-  + resource "yandex_compute_instance" "worker" {
+  # yandex_vpc_network.vpc-network will be created
+  + resource "yandex_vpc_network" "vpc-network" {
       + created_at                = (known after apply)
+      + default_security_group_id = (known after apply)
       + folder_id                 = (known after apply)
-      + fqdn                      = (known after apply)
-      + gpu_cluster_id            = (known after apply)
-      + hostname                  = "worker-2-stage"
       + id                        = (known after apply)
-      + metadata                  = {
-          + "serial-port-enable" = "1"
-          + "user-data"          = <<-EOT
-                #cloud-config
-                users:
-                  - name: mikhail
-                    groups: sudo
-                    shell: /bin/bash
-                    sudo: ['ALL=(ALL) NOPASSWD:ALL']
-                    ssh-authorized-keys:
-                      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDB/fAX5Bq2wc5zoAHYSoLGLPyK7RsvR9xev1+tvxiKnWYHQHx0412+l1Cq2sbyGcuP5Vnsmhuu1hsxBU/zMrtFB+LES6RFdgh3imFA0YcmyUn+bKNh8gLQ7KNX/QuLvololE0Ihzn9csNpoH8kzQE4jJt8Ulq6mUD26lEj+ba5xbHWazYJzbxoddVmWvQ0Kot8Mo/V5vcWtFm1NvifaEeJnPzrRIrrNMQdf/1JkpwRv82KrWCvQc0qTvF90wAzxwjLe87L1I3RMl8ey6Z2nBKuCPUMseubDG0elBHK7fc/Cp78YTRcs2P948q3qeu4kCOODfRp455+GubMC0IrhKkBptl7FNc8f1AZM9KA78Gx4JFD0eHFNuOfeNuAjs3k6XiuxYP9vHQbOxRpefA1g+gmA16Uf/LCno3q95vORg3H+LWFstyJJ3Pz7vUXIqfY3DD4LIyRrB9K63yFunp6or/8WzeUZDg9OOjJ/s8qWDcE82Ypgw6Zwk/EEv1GYw+0CG8= mikhail@yandex-cloud
-            EOT
-        }
-      + name                      = "worker-2-stage"
-      + network_acceleration_type = "standard"
-      + platform_id               = "standard-v3"
-      + service_account_id        = (known after apply)
-      + status                    = (known after apply)
-      + zone                      = "ru-central1-c"
-
-      + boot_disk {
-          + auto_delete = true
-          + device_name = (known after apply)
-          + disk_id     = (known after apply)
-          + mode        = (known after apply)
-
-          + initialize_params {
-              + block_size  = (known after apply)
-              + description = (known after apply)
-              + image_id    = "fd80bm0rh4rkepi5ksdi"
-              + name        = (known after apply)
-              + size        = 50
-              + snapshot_id = (known after apply)
-              + type        = "network-hdd"
-            }
-        }
-
-      + network_interface {
-          + index              = (known after apply)
-          + ip_address         = (known after apply)
-          + ipv4               = true
-          + ipv6               = (known after apply)
-          + ipv6_address       = (known after apply)
-          + mac_address        = (known after apply)
-          + nat                = true
-          + nat_ip_address     = (known after apply)
-          + nat_ip_version     = (known after apply)
-          + security_group_ids = (known after apply)
-          + subnet_id          = "b0c69n3sfcvbjecqumch"
-        }
-
-      + resources {
-          + core_fraction = 100
-          + cores         = 2
-          + memory        = 2
-        }
+      + labels                    = (known after apply)
+      + name                      = "vpc-network"
+      + subnet_ids                = (known after apply)
     }
 
-  # yandex_compute_instance.worker1 will be destroyed
-  # (because yandex_compute_instance.worker1 is not in configuration)
-  - resource "yandex_compute_instance" "worker1" {
-      - created_at                = "2023-10-08T18:04:09Z" -> null
-      - folder_id                 = "b1gtb2cjv1rv6ckca0ud" -> null
-      - fqdn                      = "worker1-stage.ru-central1.internal" -> null
-      - hostname                  = "worker1-stage" -> null
-      - id                        = "ef3920fh907vibjdu7kg" -> null
-      - labels                    = {} -> null
-      - metadata                  = {
-          - "serial-port-enable" = "1"
-          - "user-data"          = <<-EOT
-                #cloud-config
-                users:
-                  - name: mikhail
-                    groups: sudo
-                    shell: /bin/bash
-                    sudo: ['ALL=(ALL) NOPASSWD:ALL']
-                    ssh-authorized-keys:
-                      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDB/fAX5Bq2wc5zoAHYSoLGLPyK7RsvR9xev1+tvxiKnWYHQHx0412+l1Cq2sbyGcuP5Vnsmhuu1hsxBU/zMrtFB+LES6RFdgh3imFA0YcmyUn+bKNh8gLQ7KNX/QuLvololE0Ihzn9csNpoH8kzQE4jJt8Ulq6mUD26lEj+ba5xbHWazYJzbxoddVmWvQ0Kot8Mo/V5vcWtFm1NvifaEeJnPzrRIrrNMQdf/1JkpwRv82KrWCvQc0qTvF90wAzxwjLe87L1I3RMl8ey6Z2nBKuCPUMseubDG0elBHK7fc/Cp78YTRcs2P948q3qeu4kCOODfRp455+GubMC0IrhKkBptl7FNc8f1AZM9KA78Gx4JFD0eHFNuOfeNuAjs3k6XiuxYP9vHQbOxRpefA1g+gmA16Uf/LCno3q95vORg3H+LWFstyJJ3Pz7vUXIqfY3DD4LIyRrB9K63yFunp6or/8WzeUZDg9OOjJ/s8qWDcE82Ypgw6Zwk/EEv1GYw+0CG8= mikhail@yandex-cloud
-            EOT
-        } -> null
-      - name                      = "worker1-stage" -> null
-      - network_acceleration_type = "standard" -> null
-      - platform_id               = "standard-v3" -> null
-      - status                    = "running" -> null
-      - zone                      = "ru-central1-c" -> null
-
-      - boot_disk {
-          - auto_delete = true -> null
-          - device_name = "ef3b6t47dtk0nbudpsho" -> null
-          - disk_id     = "ef3b6t47dtk0nbudpsho" -> null
-          - mode        = "READ_WRITE" -> null
-
-          - initialize_params {
-              - block_size = 4096 -> null
-              - image_id   = "fd80bm0rh4rkepi5ksdi" -> null
-              - size       = 50 -> null
-              - type       = "network-hdd" -> null
-            }
-        }
-
-      - metadata_options {
-          - aws_v1_http_endpoint = 1 -> null
-          - aws_v1_http_token    = 2 -> null
-          - gce_http_endpoint    = 1 -> null
-          - gce_http_token       = 1 -> null
-        }
-
-      - network_interface {
-          - index              = 0 -> null
-          - ip_address         = "192.168.30.7" -> null
-          - ipv4               = true -> null
-          - ipv6               = false -> null
-          - mac_address        = "d0:0d:91:01:f1:48" -> null
-          - nat                = true -> null
-          - nat_ip_address     = "51.250.43.112" -> null
-          - nat_ip_version     = "IPV4" -> null
-          - security_group_ids = [] -> null
-          - subnet_id          = "b0c69n3sfcvbjecqumch" -> null
-        }
-
-      - placement_policy {
-          - host_affinity_rules = [] -> null
-        }
-
-      - resources {
-          - core_fraction = 100 -> null
-          - cores         = 2 -> null
-          - gpus          = 0 -> null
-          - memory        = 2 -> null
-        }
-
-      - scheduling_policy {
-          - preemptible = false -> null
-        }
+  # yandex_vpc_subnet.private-subnet will be created
+  + resource "yandex_vpc_subnet" "private-subnet" {
+      + created_at     = (known after apply)
+      + folder_id      = (known after apply)
+      + id             = (known after apply)
+      + labels         = (known after apply)
+      + name           = "private-subnet-stage"
+      + network_id     = (known after apply)
+      + v4_cidr_blocks = [
+          + "192.168.40.0/24",
+        ]
+      + v6_cidr_blocks = (known after apply)
+      + zone           = "ru-central1-c"
     }
 
-  # yandex_compute_instance.worker2 will be destroyed
-  # (because yandex_compute_instance.worker2 is not in configuration)
-  - resource "yandex_compute_instance" "worker2" {
-      - created_at                = "2023-10-08T18:04:09Z" -> null
-      - folder_id                 = "b1gtb2cjv1rv6ckca0ud" -> null
-      - fqdn                      = "worker2-stage.ru-central1.internal" -> null
-      - hostname                  = "worker2-stage" -> null
-      - id                        = "ef3nbnr5hrguvb99tk86" -> null
-      - labels                    = {} -> null
-      - metadata                  = {
-          - "serial-port-enable" = "1"
-          - "user-data"          = <<-EOT
-                #cloud-config
-                users:
-                  - name: mikhail
-                    groups: sudo
-                    shell: /bin/bash
-                    sudo: ['ALL=(ALL) NOPASSWD:ALL']
-                    ssh-authorized-keys:
-                      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDB/fAX5Bq2wc5zoAHYSoLGLPyK7RsvR9xev1+tvxiKnWYHQHx0412+l1Cq2sbyGcuP5Vnsmhuu1hsxBU/zMrtFB+LES6RFdgh3imFA0YcmyUn+bKNh8gLQ7KNX/QuLvololE0Ihzn9csNpoH8kzQE4jJt8Ulq6mUD26lEj+ba5xbHWazYJzbxoddVmWvQ0Kot8Mo/V5vcWtFm1NvifaEeJnPzrRIrrNMQdf/1JkpwRv82KrWCvQc0qTvF90wAzxwjLe87L1I3RMl8ey6Z2nBKuCPUMseubDG0elBHK7fc/Cp78YTRcs2P948q3qeu4kCOODfRp455+GubMC0IrhKkBptl7FNc8f1AZM9KA78Gx4JFD0eHFNuOfeNuAjs3k6XiuxYP9vHQbOxRpefA1g+gmA16Uf/LCno3q95vORg3H+LWFstyJJ3Pz7vUXIqfY3DD4LIyRrB9K63yFunp6or/8WzeUZDg9OOjJ/s8qWDcE82Ypgw6Zwk/EEv1GYw+0CG8= mikhail@yandex-cloud
-            EOT
-        } -> null
-      - name                      = "worker2-stage" -> null
-      - network_acceleration_type = "standard" -> null
-      - platform_id               = "standard-v3" -> null
-      - status                    = "running" -> null
-      - zone                      = "ru-central1-c" -> null
-
-      - boot_disk {
-          - auto_delete = true -> null
-          - device_name = "ef35s5q1r15q66k4nmof" -> null
-          - disk_id     = "ef35s5q1r15q66k4nmof" -> null
-          - mode        = "READ_WRITE" -> null
-
-          - initialize_params {
-              - block_size = 4096 -> null
-              - image_id   = "fd80bm0rh4rkepi5ksdi" -> null
-              - size       = 50 -> null
-              - type       = "network-hdd" -> null
-            }
-        }
-
-      - metadata_options {
-          - aws_v1_http_endpoint = 1 -> null
-          - aws_v1_http_token    = 2 -> null
-          - gce_http_endpoint    = 1 -> null
-          - gce_http_token       = 1 -> null
-        }
-
-      - network_interface {
-          - index              = 0 -> null
-          - ip_address         = "192.168.30.17" -> null
-          - ipv4               = true -> null
-          - ipv6               = false -> null
-          - mac_address        = "d0:0d:17:5d:f6:58" -> null
-          - nat                = true -> null
-          - nat_ip_address     = "51.250.38.188" -> null
-          - nat_ip_version     = "IPV4" -> null
-          - security_group_ids = [] -> null
-          - subnet_id          = "b0c69n3sfcvbjecqumch" -> null
-        }
-
-      - placement_policy {
-          - host_affinity_rules = [] -> null
-        }
-
-      - resources {
-          - core_fraction = 100 -> null
-          - cores         = 2 -> null
-          - gpus          = 0 -> null
-          - memory        = 2 -> null
-        }
-
-      - scheduling_policy {
-          - preemptible = false -> null
-        }
+  # yandex_vpc_subnet.public-subnet will be created
+  + resource "yandex_vpc_subnet" "public-subnet" {
+      + created_at     = (known after apply)
+      + folder_id      = (known after apply)
+      + id             = (known after apply)
+      + labels         = (known after apply)
+      + name           = "public-subnet-stage"
+      + network_id     = (known after apply)
+      + v4_cidr_blocks = [
+          + "192.168.30.0/24",
+        ]
+      + v6_cidr_blocks = (known after apply)
+      + zone           = "ru-central1-c"
     }
 
-Plan: 4 to add, 0 to change, 3 to destroy.
+Plan: 6 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + master_ip_list = [
+      + (known after apply),
+    ]
+  + worker_ip_list = [
+      + (known after apply),
+      + (known after apply),
+    ]
+
