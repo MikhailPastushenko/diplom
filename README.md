@@ -231,5 +231,42 @@ https://github.com/MikhailPastushenko/diplom-app/actions/runs/6633088528/job/180
 
 
 
+##  Доработка ##
+
+
+1. Отображение картинок в README файле поправлено
+   
+2. Задал количество мастер-нод и воркеров через переменную count https://github.com/MikhailPastushenko/diplom-terraform/blob/main/main.tf#L32C1-L34C50
+   
+3. добавил в файл .gitignore пути, начинающиеся с точки https://github.com/MikhailPastushenko/diplom-terraform/blob/main/.gitignore
+   
+4. Добавил вывод переменных с ip-адресами мастер- и воркер-нод https://github.com/MikhailPastushenko/diplom-terraform/blob/main/main.tf#L88C1-L95C1
+
+   результат выполнения `terraform apply`: https://github.com/MikhailPastushenko/diplom/blob/main/terraform/terraform_apply.txt
+
+   далее этот список просто копируем в команду `declare -a IPs=(192.168.20.29 192.168.20.19 192.168.20.8)` при подготовке файла инветтаризации. Автоматическую передачу сделать не могу, т.к. terraform разворачивается с хостовой ВМ, а кластер kubernetes c одной из нод
+
+5. Добавил дополнительный action проверки тега https://github.com/MikhailPastushenko/diplom-app/blob/main/.github/workflows/main.yml#L11C1-L29C56
+   Если тег не соответствует формату, то экшены build и deploy не выполняются  https://github.com/MikhailPastushenko/diplom-app/actions/runs/6685125249
+   
+ ![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/19a99f90-6dd6-4175-9f79-e08ed79029ff)
+
+6. Через ингресс не получилось сделать. Сделал через NodePort
+
+   Создал сервис
+   ![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/e8265625-f26f-4d91-ad9d-ea388928a6a6)
+
+   Создал балансировщик
+
+   ![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/659b2e15-7c95-4773-942f-0c1cc317cd79)
+
+   Приложение доступно по адресам нод
+   http://51.250.40.179:30480/
+   http://51.250.32.67:30480/
+   и по адресу БН
+   http://158.160.130.11/
+
+![image](https://github.com/MikhailPastushenko/diplom/assets/99995304/b3582ded-5a4d-40e6-b978-a737d5bd6cfc)
+
 
 
