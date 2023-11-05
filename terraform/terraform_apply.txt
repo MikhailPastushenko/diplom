@@ -214,21 +214,6 @@ Terraform will perform the following actions:
       + subnet_ids                = (known after apply)
     }
 
-  # yandex_vpc_subnet.private-subnet will be created
-  + resource "yandex_vpc_subnet" "private-subnet" {
-      + created_at     = (known after apply)
-      + folder_id      = (known after apply)
-      + id             = (known after apply)
-      + labels         = (known after apply)
-      + name           = "private-subnet-stage"
-      + network_id     = (known after apply)
-      + v4_cidr_blocks = [
-          + "192.168.40.0/24",
-        ]
-      + v6_cidr_blocks = (known after apply)
-      + zone           = "ru-central1-c"
-    }
-
   # yandex_vpc_subnet.public-subnet will be created
   + resource "yandex_vpc_subnet" "public-subnet" {
       + created_at     = (known after apply)
@@ -238,13 +223,13 @@ Terraform will perform the following actions:
       + name           = "public-subnet-stage"
       + network_id     = (known after apply)
       + v4_cidr_blocks = [
-          + "192.168.30.0/24",
+          + "192.168.20.0/24",
         ]
       + v6_cidr_blocks = (known after apply)
       + zone           = "ru-central1-c"
     }
 
-Plan: 6 to add, 0 to change, 0 to destroy.
+Plan: 5 to add, 0 to change, 0 to destroy.
 
 Changes to Outputs:
   + master_ip_list = [
@@ -262,37 +247,36 @@ Do you want to perform these actions in workspace "stage"?
   Enter a value: yes
 
 yandex_vpc_network.vpc-network: Creating...
-yandex_vpc_network.vpc-network: Creation complete after 4s [id=enpqlnil01t23ls3l6ge]
-yandex_vpc_subnet.private-subnet: Creating...
+yandex_vpc_network.vpc-network: Creation complete after 4s [id=enpgbvo33bdtf5io3m36]
 yandex_vpc_subnet.public-subnet: Creating...
-yandex_vpc_subnet.public-subnet: Creation complete after 1s [id=b0cqb7d6v5ccd5tmi3b2]
-yandex_compute_instance.master[0]: Creating...
+yandex_vpc_subnet.public-subnet: Creation complete after 1s [id=b0cra4d9an087qh8cep9]
 yandex_compute_instance.worker[0]: Creating...
+yandex_compute_instance.master[0]: Creating...
 yandex_compute_instance.worker[1]: Creating...
-yandex_vpc_subnet.private-subnet: Creation complete after 2s [id=b0caugo6gu1a3gm8k7gq]
-yandex_compute_instance.master[0]: Still creating... [10s elapsed]
-yandex_compute_instance.worker[0]: Still creating... [10s elapsed]
 yandex_compute_instance.worker[1]: Still creating... [10s elapsed]
+yandex_compute_instance.worker[0]: Still creating... [10s elapsed]
+yandex_compute_instance.master[0]: Still creating... [10s elapsed]
+yandex_compute_instance.master[0]: Still creating... [20s elapsed]
 yandex_compute_instance.worker[1]: Still creating... [20s elapsed]
 yandex_compute_instance.worker[0]: Still creating... [20s elapsed]
-yandex_compute_instance.master[0]: Still creating... [20s elapsed]
-yandex_compute_instance.master[0]: Still creating... [30s elapsed]
-yandex_compute_instance.worker[1]: Still creating... [30s elapsed]
 yandex_compute_instance.worker[0]: Still creating... [30s elapsed]
-yandex_compute_instance.master[0]: Creation complete after 38s [id=ef3dqqlvmp2q74sct48g]
-yandex_compute_instance.worker[0]: Still creating... [40s elapsed]
+yandex_compute_instance.worker[1]: Still creating... [30s elapsed]
+yandex_compute_instance.master[0]: Still creating... [30s elapsed]
 yandex_compute_instance.worker[1]: Still creating... [40s elapsed]
-yandex_compute_instance.worker[0]: Creation complete after 41s [id=ef3bic4kenrh6ic59rss]
-yandex_compute_instance.worker[1]: Creation complete after 42s [id=ef3lius19bbv340m4v1e]
+yandex_compute_instance.master[0]: Still creating... [40s elapsed]
+yandex_compute_instance.worker[0]: Still creating... [40s elapsed]
+yandex_compute_instance.worker[0]: Creation complete after 41s [id=ef3ora24ubsjbvrttg9q]
+yandex_compute_instance.worker[1]: Creation complete after 41s [id=ef39be0661hvp55qvi8a]
+yandex_compute_instance.master[0]: Creation complete after 44s [id=ef3lmkrjggfn0v911th1]
 
-Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
+Apply complete! Resources: 5 added, 0 changed, 0 destroyed.
 
 Outputs:
 
 master_ip_list = [
-  "192.168.30.10",
+  "192.168.20.29",
 ]
 worker_ip_list = [
-  "192.168.30.34",
-  "192.168.30.20",
+  "192.168.20.8",
+  "192.168.20.19",
 ]
